@@ -30,16 +30,16 @@
                 </select>
             </div>
             <div class="col">
-                <input type="number" class="form-control" name="nd" placeholder="Numero de documento" required>
+                <input type="number" class="form-control" name="nd" id="nd" placeholder="Numero de documento" required>
             </div>
             <div class="col">
-                <input type="text" class="form-control" name="nombres" placeholder="Nombres" required>
+                <input type="text" class="form-control" name="nombres" id="nombres" placeholder="Nombres" required>
             </div >
         </div>
 
         <div class="row">
             <div class="col">
-                <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" required>
+                <input type="text" class="form-control" name="apellidos" id placeholder="Apellidos" required>
             </div>
             <div class="col">
                 <select name="formacion" id="formacion" class="form-control" required>
@@ -104,7 +104,7 @@
                 
                     <br>
                 <div class="col button"><button class="btn btn-primary" type="submit" name="boton" style="background-color: #212529; border:none;">Guardar</button></div>
-             
+         
             </div>
    
     </form>
