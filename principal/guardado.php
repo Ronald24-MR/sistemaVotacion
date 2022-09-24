@@ -1,13 +1,17 @@
 <?php
    session_start();
-   if(!isset($_SESSION['rol'])){
-        header("location: ../index.php");
-   }
-   else{
-        if($_SESSION['rol'] != 2){
-            header("location: ../index.php");
-        }
-   }
+   if(isset($_SESSION['usuario']))
+    {
+        // recuperando la session
+        $usuario=$_SESSION['usuario'];
+        // print("Bienvenido: ".$usuario[1]." ".$usuario[2]);
+    }
+    else
+    {   
+        // redireccionar para el login
+        session_destroy();
+        header("Location: index.php");
+    }
 ?>
 
 <?php

@@ -1,14 +1,4 @@
-<?php
-   session_start();
-   if(!isset($_SESSION['rol'])){
-        header("location: ../index.php");
-   }
-   else{
-        if($_SESSION['rol'] != 2){
-            header("location: ../index.php");
-        }
-   }
-?>
+
 <img src="" alt="">
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +49,7 @@
         
         <section id="scroll" >
             <?php
-                if(include("../conectar.php")){
+                if(include(    $conectar=mysqli_connect("localhost","root","","sistemavotaciones"))){
                     $sql="select registrar_votaciones.numero_documento,tipo_documento.nombre,registrar_votaciones.nombres,registrar_votaciones.apellidos,formacion.nombre,sede.nombre,registrar_votaciones.fotografia,registrar_votaciones.propuesta_campaña 
                     from tipo_documento,sede,formacion,registrar_votaciones
                     where registrar_votaciones.cod_tipo_documento=tipo_documento.codigo and registrar_votaciones.cod_formacion=formacion.codigo 
@@ -71,7 +61,7 @@
                             <div class="container px-5" style="box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5); margin-top:20px;" >
                                 <div class="row gx-5 align-items-center">
                                     <div class="col-lg-6 order-lg-2">
-                                        <div class="p-5"><img class="img-fluid rounded-circle" src="../Administrador/PlantillaAdmin/fotos/<?php print($fila[6]); ?>" alt="foto del candidato" style="width:100%; height:480px;"/></div>
+                                        <div class="p-5"><img class="img-fluid rounded-circle" src="../Administrador/Admin/img/<?php print($fila[6]); ?>" alt="foto del candidato" style="width:100%; height:480px;"/></div>
                                         </div>
                                         <div class="col-lg-6 order-lg-1">
                                             <div class="p-5">

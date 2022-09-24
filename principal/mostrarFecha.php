@@ -8,7 +8,7 @@
     if($conectar=mysqli_connect("localhost","root","","sistemavotaciones"))
         {
             $tabla=mysqli_query($conectar,$sql);
-            if($tabla->num_rows==true)
+            if($tabla->num_rows==1)
             {
                 if($fila['estado']==0)
                   {

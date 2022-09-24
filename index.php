@@ -62,7 +62,13 @@
   </div>
 </section>
 
-<!-- MDB -->
+<script type="text/javascript">
+    function preventBack(){window.history.forward()};
+    setTimeout("preventBack()",0);
+    window.onunload = function(){null}
+</script>
+
+
 <script
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"
@@ -72,23 +78,6 @@
 </html>
 
 <?php
-    session_start();
-    function roles(){
-      if(isset($_SESSION['rol'])){
-          switch($_SESSION['rol']){
-              case 1: 
-                header("Location: Administrador/PlantillaAdmin/index.php");
-                break;
-
-              case 2:
-                include('principal/mostrarFecha.php');
-                break;
-
-                default:
-          }
-      }
-    }
-
     if(isset($_POST['boton']))
     {
         // recoger los datos
@@ -99,12 +88,20 @@
         {
             $tabla=mysqli_query($conectar,$sql);
             $fila=mysqli_fetch_array($tabla);
-            if($tabla->num_rows==true)
+            if($tabla->num_rows==1)
             {
-                $rol = $fila[3];
-                $_SESSION['rol'] = $rol;
-
-                roles();
+                // crear una session
+                session_start();
+                $_SESSION['usuario']=$usuario;
+                $_SESSION['cod_id']=$usuario;
+                if($fila['cod_id']==1)
+                {
+                  header("Location: Administrador/Admin/index.php");
+                }
+                elseif ($fila['cod_id']==2) 
+                {
+                  include('principal/mostrarFecha.php');
+                }
             }
             else
             {
