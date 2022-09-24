@@ -1,3 +1,15 @@
+<?php
+   session_start();
+   if(!isset($_SESSION['rol'])){
+        header("location: ../index.php");
+   }
+   else{
+        if($_SESSION['rol'] != 2){
+            header("location: ../index.php");
+        }
+   }
+?>
+<img src="" alt="">
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -55,7 +67,7 @@
                     $tabla=mysqli_query($conectar,$sql);
                     while($fila=mysqli_fetch_array($tabla)){
                         ?>
-                        <form action="" method="post">
+                        <form action="guardado.php" method="post">
                             <div class="container px-5" style="box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5); margin-top:20px;" >
                                 <div class="row gx-5 align-items-center">
                                     <div class="col-lg-6 order-lg-2">
@@ -101,5 +113,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </body>
 </html>

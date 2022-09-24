@@ -20,7 +20,7 @@
                                 Tabla Candidatos
                             </div>
                             <div class="card-body">
-                                <table id="datatablesSimple">
+                                <table id="datatablesSimple" class="table-light">
                                     <thead>
                                         <tr>
                                             <th>Fotografia</th>

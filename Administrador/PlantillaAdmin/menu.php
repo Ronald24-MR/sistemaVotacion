@@ -15,7 +15,7 @@
                         <li><a class="dropdown-item" href="#!">Settings</a></li>
                         <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li><a class="dropdown-item" href="cerrarSesion.php">Cerrar Sesion</a></li>
                     </ul>
                 </li>
             </ul>
@@ -29,10 +29,6 @@
                             <a class="nav-link" href="index.php">
                                 <div class="sb-nav-link-icon"></div>
                                 Welcome
-                            </a>
-                            <a class="nav-link" href="">
-                                <div class="sb-nav-link-icon"></div>
-                                Pagina Votacion
                             </a>
                             <div class="sb-sidenav-menu-heading">FORMULARIOS</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
