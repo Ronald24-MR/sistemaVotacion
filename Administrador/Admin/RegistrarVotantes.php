@@ -95,9 +95,68 @@
                 <div class="col button"><button class="btn btn-primary" type="submit" name="boton" style="background-color: #212529; border:none;">Guardar</button></div>
              
             </div>
-   
+            <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="fas fa-file-excel"></i>Importar desde excel
+            </a>
+
+            <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Elija el archivo excel</h5>
+        
+      </div>
+      <div class="modal-body">
+      <input type="file" id="txt_archivo" class="form-control">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button class="btn btn-success" onclick="cargarExcel()">Importar</button>
+      </div>
+    </div>
+  </div>
+</div>
     </form>
 </div>
+
+<script>
+    document.getElementById("txt_archivo").addEventListener("change",()=>{
+        let fileName = document.getElementById("txt_archivo").value;
+        let idxDot = fileName.lastIndexOf(".") + 1;
+        let extFile = fileName.substr(idxDot,fileName.length).toLowerCase();
+        
+        if(extFile=="xlsx" || extFile=="xlsb" || extFile=="xlsm"){
+
+        }
+        else{
+            Swal.fire("!Tipo de archivo no valido¡");
+            document.getElementById("txt_archivo").value="";
+        }
+    });
+
+    function cargarExcel(){
+        let archivo = document.getElementById("txt_archivo").value;
+        if(archivo.length==0){
+            return Swal.fire("Seleccione un archivo");
+        }
+
+        let formData = new FormData();
+        let excel = $("#txt_archivo")[0].files[0];
+        formData.append('excel',excel)
+        $.ajax({
+            url: '../libreria/excel/leerVotantes.php',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success:function(resp){
+                document.write(resp);
+            }
+        })
+        return false;
+    }
+</script>
 
 
 <?php

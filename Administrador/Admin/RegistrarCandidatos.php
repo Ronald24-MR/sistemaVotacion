@@ -103,13 +103,21 @@
         <div class="row">
                 
                     <br>
-                <div class="col button"><button class="btn btn-primary" type="submit" name="boton" style="background-color: #212529; border:none;">Guardar</button></div>
-         
+                <div class="col button">
+                    <button class="btn btn-primary" type="submit" name="boton" style="background-color: #212529; border:none;">Guardar</button>
+
+                    
+                </div>
+            
             </div>
-   
+           
+            
     </form>
     </div>
    
+
+    
+
     <?php
     if(isset($_POST['boton']))
     {

@@ -58,10 +58,7 @@ create table usuario(
     estado int not null
 );
 
-create table roles(
-    id int primary key not null,
-    rol varchar(45) not null
-);
+
 
 ALTER TABLE registrar_votaciones ADD CONSTRAINT fk_tipo_documento_registrar_votaciones
 FOREIGN KEY (cod_tipo_documento) REFERENCES tipo_documento(codigo);
@@ -90,8 +87,6 @@ FOREIGN KEY (cod_sede) REFERENCES sede(codigo);
 ALTER TABLE gestionar_votantes ADD CONSTRAINT fk_usuario_gestionar_votantes
 FOREIGN KEY (numero_documento) REFERENCES usuario(usuario); 
 
-ALTER table usuario ADD CONSTRAINT fk_roles_usuario
-FOREIGN KEY (cod_id) REFERENCES roles(id);
 
 
 insert into tipo_documento value (01,'C.C');
@@ -105,9 +100,6 @@ insert into formacion value (12,'Panaderia');
 insert into sede value (001,'La Gallera');
 insert into sede value (002,'Boston');
 insert into sede value (003,'Tolu');
-
-insert into roles value(1,'admin');
-insert into roles value(2,'usuario');
 
 
 insert into usuario value(1,123,'Ronald Millan',1,0);

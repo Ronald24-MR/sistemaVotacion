@@ -2,7 +2,8 @@
      
             <?php include("menu.php");  ?>
             <?php include("../../conectar.php"); ?>
-          
+            
+    
             
 
             <div id="layoutSidenav_content">
@@ -14,6 +15,8 @@
                             <li class="breadcrumb-item active">Tabla</li>
                         </ol>
                         
+                        <a href="RegistrarVotantes.php" class="btn btn-primary mb-3">Nuevo Registro</a>
+
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
@@ -21,7 +24,7 @@
                             </div>
                             <div class="card-body">
 
-                                <table id="datatablesSimple" class="table-light">
+                                <table id="datatablesSimple"  class="table-light">
                                     <thead>
                                         <tr>
                                             <th>Numero Documento</th>
@@ -80,7 +83,11 @@
                                     </tbody>
                                 </table>
 
-                                <a href="../reportes/votantesPDF.php" class="btn btn-danger">Ver PDF</a>
+                                <a href="../reportes/votantesPDF.php" target="_blank" class="btn btn-danger">
+                                <i class='fas fa-file-pdf'></i>Ver PDF</a>
+                                <a href="../libreria/excel/exportarExcel.php" class="btn btn-success">
+                                     <i class="fas fa-file-excel"></i>Ver EXCEL
+                                </a>
 
 
                             </div>
@@ -90,5 +97,3 @@
                 
             </div>
         </div>
- 
-      
