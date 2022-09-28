@@ -7,7 +7,7 @@ create table registrar_votaciones(
     cod_sede int not null,
     numero_votos int not null,
     fotografia varchar(45) not null,
-    propuesta_campaña varchar(300) not null,
+    propuesta_campana varchar(300) not null,
     contraseñas varchar(45) not null
 
 );
@@ -54,7 +54,7 @@ create table usuario(
     usuario int primary key not null,
     clave varchar(45) not null,
     nombre_apellido varchar(45) not null,
-    cod_id int not null,
+    rol int not null,
     estado int not null
 );
 

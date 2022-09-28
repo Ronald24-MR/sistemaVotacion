@@ -44,7 +44,7 @@
                                         $tabla=mysqli_query($conectar,$sql);
                                         while($fila=mysqli_fetch_array($tabla)){
                                             print("<tr >");
-                                            print("<td ><img src='img/$fila[0]' style='border-radius:50%; width: 100px; height: 90px'></td>");
+                                            print("<td ><img src='fotos/$fila[0]' style='border-radius:50%; width: 100px; height: 90px'></td>");
                                             print("<td style='text-align:center;'>$fila[1]</td>");
                                             print("<td style='text-align:center;'>$fila[2]</td>");
                                             print("<td style='text-align:center;'>$fila[3]</td>");
@@ -58,7 +58,7 @@
 
                                                 <input type='submit' name='accion' id='actualizar' value='Seleccionar' class='btn btn-primary'>
 
-                                                <input type='submit' name='accion'  value='Borrar' class='btn btn-danger'>
+                                                <input type='submit' name='accion'  value='Borrar' class='btn btn-danger' onclick='Confirmar();'>
 
                                             </form>
                                             </td>");
@@ -87,6 +87,19 @@
                 
             </div>
         </div>
+
+        <script>
+            function Confirmar(){
+    var retVal = confirm("¿Seguro desea continuar?");
+    if( retVal == true ){
+        document.write ("OK, REGISTRO ALMACENADO");
+        return true;
+    }else{
+        document.write ("NO SE GUARDÓ EL REGISTRO");
+        return false;
+    }
+}
+        </script>
 
   
       

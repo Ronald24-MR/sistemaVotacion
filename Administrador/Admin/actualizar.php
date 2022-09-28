@@ -1,10 +1,13 @@
-<?php include("menu.php") ?>
+<?php 
+$cedula = $_POST['cedula'];
+$nombres = $_POST['nombres'];
+$apellidos = $_POST['apellidos'];
 
-<link rel="stylesheet" href="../../css/bootstrap.min.css">
-<link rel="stylesheet" href="css/styleCandidatos.css">
 
-<div class="container contenedor">
-    <form action="" method="post">
+
+?>
+
+<form action="" method="post">
         <h2>Registro de votantes</h2>
         <div class="row">
             <div class="col">
@@ -30,16 +33,16 @@
                 </select>
             </div>
             <div class="col">
-                <input type="number" class="form-control" name="nd" placeholder="Numero de documento" requerid>
+                <input type="number" class="form-control" name="nd" placeholder="Numero de documento" value="<?php print($cedula) ?>" requerid>
             </div>
         </div>
 
         <div class="row">
             <div class="col">
-                <input type="text" class="form-control" name="nombres" placeholder="Nombres" required>
+                <input type="text" class="form-control" name="nombres" placeholder="Nombres" required value="<?php print($nombres) ?>">
             </div>
             <div class="col">
-                <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" required>
+                <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" required value="<?php print($apellidos) ?>">
             </div>
         </div>
 
@@ -118,76 +121,6 @@
   </div>
 </div>
     </form>
-</div>
-
-<script>
-    document.getElementById("txt_archivo").addEventListener("change",()=>{
-        let fileName = document.getElementById("txt_archivo").value;
-        let idxDot = fileName.lastIndexOf(".") + 1;
-        let extFile = fileName.substr(idxDot,fileName.length).toLowerCase();
-        
-        if(extFile=="xlsx" || extFile=="xlsb" || extFile=="xlsm"){
-
-        }
-        else{
-            Swal.fire("!Tipo de archivo no valido¡");
-            document.getElementById("txt_archivo").value="";
-        }
-    });
-
-    function cargarExcel(){
-        let archivo = document.getElementById("txt_archivo").value;
-        if(archivo.length==0){
-            return Swal.fire("Seleccione un archivo");
-        }
-
-        let formData = new FormData();
-        let excel = $("#txt_archivo")[0].files[0];
-        formData.append('excel',excel)
-        $.ajax({
-            url: '../libreria/excel/leerVotantes.php',
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success:function(resp){
-                document.write(resp);
-            }
-        })
-        return false;
-    }
-</script>
 
 
-<?php
-    if(isset($_POST['boton']))
-    {
-        $nd=$_POST['nd'];
-        $td=$_POST['td'];
-        $nombres=$_POST['nombres'];
-        $apellidos=$_POST['apellidos'];
-        $formacion=$_POST['formacion'];
-        $sede=$_POST['sede'];
-        $encriptar = password_hash($nd, PASSWORD_DEFAULT,['cost' => 15]);
-        
-        $sql="insert into usuario value($nd,'$encriptar','$nombres $apellidos',2,0)";
-        
-        if(include('../../conectar.php'))
-        {
-            if(mysqli_query($conectar,$sql))
-            {
-                $sql="insert into gestionar_votantes value($nd,$td,'$nombres','$apellidos',$formacion,$sede)";
-                mysqli_query($conectar,$sql);
-                print("<script>Swal.fire('Registro guardado correctamente')</script>");
-            }
-            else
-            {
-                print("<script>Swal.fire('Error al guardar los datos')</script>");
-            }
-        }
-    else
-    {
-        print("error al conectar");
-    }
-    }
-?>
+    

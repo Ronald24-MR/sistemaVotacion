@@ -12,7 +12,7 @@
             {
                 if($fila['estado']==0)
                   {
-                  header("Location: principal.php");
+                  header("Location: principal/index.php");
                   }
                   else
                   {

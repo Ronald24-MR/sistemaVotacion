@@ -82,6 +82,7 @@ if(isset($_SESSION['usuario']))
     $html = ob_get_clean();
     // echo $html;
 
+  
     require_once '../libreria/dompdf/autoload.inc.php';
     use Dompdf\Dompdf;
     $dompdf = new Dompdf();

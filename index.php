@@ -67,7 +67,16 @@
     setTimeout("preventBack()",0);
     window.onunload = function(){null}
 </script>
+<script>
+        window.onload = function(){
+          window.location.hash = "no-back-button";
+          window.location.hash = "Again-No-back-button";
 
+          window.onhashchange=function(){
+            window.location.hash = "no-back-button";
+    }
+}
+    </script>
 
 <script
   type="text/javascript"
@@ -83,25 +92,30 @@
         // recoger los datos
         $usuario=$_POST['usuario'];
         $clave=$_POST['clave'];
-        $sql="select * from usuario where usuario=$usuario and clave='$clave'";
+        $sql="select * from usuario where usuario=$usuario";
         if(include('conectar.php'))
         {
             $tabla=mysqli_query($conectar,$sql);
             $fila=mysqli_fetch_array($tabla);
             if($tabla->num_rows==1)
             {
-                // crear una session
+                $claveEncriptada = $fila[1];
+             
+                if(password_verify($clave,$claveEncriptada)){
+                  // crear una session
                 session_start();
                 $_SESSION['usuario']=$usuario;
-                $_SESSION['cod_id']=$usuario;
-                if($fila['cod_id']==1)
+                $_SESSION['rol']=$usuario;
+                if($fila['rol']==1)
                 {
                   header("Location: Administrador/Admin/index.php");
                 }
-                elseif ($fila['cod_id']==2) 
+                elseif ($fila['rol']==2) 
                 {
                   include('principal/mostrarFecha.php');
                 }
+                }
+                
             }
             else
             {

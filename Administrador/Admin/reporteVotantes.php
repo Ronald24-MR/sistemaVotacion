@@ -2,7 +2,12 @@
      
             <?php include("menu.php");  ?>
             <?php include("../../conectar.php"); ?>
-            
+            <?php  if (isset($_GET['eliminado'])){
+    
+                print("<script>Swal.fire('registro eliminado')</script>");
+
+  } ?>
+
     
             
 
@@ -62,13 +67,23 @@
                                                 print("<td>No ha votado</td>");
                                             }
                                             print("<td>
-                                            <form method=post'>
+                                            <form method='post' action='actualizar.php'>
                                                 
 
                                                 <input type='submit' name='accion' id='actualizar' value='Seleccionar' class='btn btn-primary'>
+                                                <input type='hidden' name='cedula' value='$fila[0]'>
+                                                <input type='hidden' name='nombres' value='$fila[2]'>
+                                                <input type='hidden' name='apellidos' value='$fila[3]'>
+                                                
+                                             
+                                
+                                                
+                                                
 
-                                                <input type='submit' name='accion'  value='Borrar' class='btn btn-danger'>
-
+                                            </form>
+                                            <form method='post' action='borrar.php'>
+                                            <input type='hidden' name='codigo' value='$fila[0]'>
+                                            <input type='submit' name='accion'  value='Borrar' class='btn btn-danger' onclick='return Confirmar();'>
                                             </form>
                                             </td>");
                                             print("</tr>");
@@ -97,3 +112,17 @@
                 
             </div>
         </div>
+
+        <script>
+           function Confirmar(){
+            let respuesta = confirm("Estas seguro que deseas borrar el registro?")
+
+            if(respuesta == true){
+                return true;
+            }
+            else{
+                return false;
+            }
+           }
+           
+        </script>

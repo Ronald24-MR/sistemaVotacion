@@ -52,7 +52,7 @@ if(isset($_SESSION['usuario']))
                         ?>
                         <tr>
                             <td>
-                                <img src="http://<?php echo $_SERVER['HTTP_HOST'];?>/sistemaVotacion/Administrador/Admin/img/<?php echo $fila[0]; ?>" alt="foto del candidato" style='border-radius:50%; width: 100px; height: 90px'>
+                                <img src="http://<?php echo $_SERVER['HTTP_HOST'];?>/sistemaVotacion/Administrador/Admin/fotos/<?php echo $fila[0]; ?>" alt="foto del candidato" style='border-radius:50%; width: 100px; height: 90px'>
                             </td>
                             <td style='text-align:center;'><?php echo $fila[1]; ?></td>
                             <td style='text-align:center;'><?php echo $fila[2]; ?></td>

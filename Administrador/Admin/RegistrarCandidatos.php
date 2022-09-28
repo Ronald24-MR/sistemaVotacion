@@ -130,8 +130,9 @@
         $nombrefoto=$_FILES['fotografia']['name'];
         $tipofile=$_FILES['fotografia']['type'];
         $pc=$_POST['pc'];
+        $encriptar = password_hash($nd, PASSWORD_DEFAULT,['cost' => 15]);
         
-        $sql="insert into registrar_votaciones value($nd, $td, '$nombres', '$apellidos', $formacion, $sede,0,'$nombrefoto', '$pc', '$nd')";
+        $sql="insert into registrar_votaciones value($nd, $td, '$nombres', '$apellidos', $formacion, $sede,0,'$nombrefoto', '$pc', '$encriptar')";
 
         if(!(strpos($tipofile,"jpg") || strpos($tipofile,"png") || strpos($tipofile,"jpeg")))
         {
@@ -144,8 +145,8 @@
                 if(mysqli_query($conectar,$sql))
                 {
                     
-                    $ruta="img/".$nombrefoto;
-                    $sql="insert into usuario value($nd,'$nd','$nombres $apellidos',2,0)";
+                    $ruta="fotos/".$nombrefoto;
+                    $sql="insert into usuario value($nd,'$encriptar','$nombres $apellidos',2,0)";
                     mysqli_query($conectar,$sql);
                     if (move_uploaded_file($_FILES['fotografia']['tmp_name'],$ruta))
                     {
