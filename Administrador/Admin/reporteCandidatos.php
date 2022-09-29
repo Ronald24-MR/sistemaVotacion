@@ -88,7 +88,7 @@
             </div>
         </div>
 
-        <script>
+        <!-- <script>
             function Confirmar(){
     var retVal = confirm("¿Seguro desea continuar?");
     if( retVal == true ){
@@ -99,7 +99,7 @@
         return false;
     }
 }
-        </script>
+        </script> -->
 
   
       

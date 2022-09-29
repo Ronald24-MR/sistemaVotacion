@@ -1,18 +1,36 @@
 <?php 
-$cedula = $_POST['cedula'];
-$nombres = $_POST['nombres'];
-$apellidos = $_POST['apellidos'];
+    include("../../conectar.php");
+    
 
+$id=$_GET['id'];
 
+$sql="SELECT gestionar_votantes.numero_documento, tipo_documento.nombre, gestionar_votantes.nombres, gestionar_votantes.apellidos, formacion.nombre, sede.nombre FROM tipo_documento,sede,formacion,gestionar_votantes WHERE gestionar_votantes.cod_tipo_documento=tipo_documento.codigo and gestionar_votantes.cod_formacion=formacion.codigo and gestionar_votantes.cod_sede=sede.codigo";
+// print($sql);
+$query=mysqli_query($conectar,$sql);
 
+$row=mysqli_fetch_array($query);
 ?>
 
-<form action="" method="post">
-        <h2>Registro de votantes</h2>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <title>Actualizar</title>
+        <link rel="stylesheet" href="css/styleCandidatos.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        
+    </head>
+    <body>
+    <div class="container contenedor">
+    <form action="update.php" method="post">
+        <h2>Actualizar votantes</h2>
         <div class="row">
             <div class="col">
-            <select name="td" id="td" class="form-control" required>
-                    <option value="0" disabled selected hidden>Tipo de documento</option>
+            <select name="td" id="td" class="form-control" >
+                    <option value="<?php echo $row[1] ?>" disabled selected hidden><?php echo $row[1] ?></option>
                     <?php
                     if(include('../../conectar.php'))
                     {
@@ -33,23 +51,23 @@ $apellidos = $_POST['apellidos'];
                 </select>
             </div>
             <div class="col">
-                <input type="number" class="form-control" name="nd" placeholder="Numero de documento" value="<?php print($cedula) ?>" requerid>
+                <input type="number" class="form-control" value="<?php echo $row['numero_documento'] ?>" name="nd" placeholder="Numero de documento"  readonly>
             </div>
         </div>
 
         <div class="row">
             <div class="col">
-                <input type="text" class="form-control" name="nombres" placeholder="Nombres" required value="<?php print($nombres) ?>">
+                <input type="text" class="form-control" value="<?php echo $row['nombres'] ?>" name="nombres" placeholder="Nombres" >
             </div>
             <div class="col">
-                <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" required value="<?php print($apellidos) ?>">
+                <input type="text" class="form-control" value="<?php echo $row['apellidos'] ?>" name="apellidos" placeholder="Apellidos" >
             </div>
         </div>
 
         <div class="row">
             <div class="col">
-                <select name="formacion" id="formacion" class="form-control" required>
-                <option value="0" disabled selected hidden>Formacion</option>
+                <select name="formacion" id="formacion" class="form-control" >
+                <option value="<?php echo $row[4] ?>" disabled selected hidden><?php echo $row[4] ?></option>
                 <?php
                     if(include('../../conectar.php'))
                     {
@@ -70,8 +88,8 @@ $apellidos = $_POST['apellidos'];
                 </select>
             </div>
             <div class="col">
-                <select name="sede" id="sede" class="form-control" required>
-                <option value="0" disabled selected hidden>Sede</option>
+                <select name="sede" id="sede" class="form-control" >
+                <option value="<?php echo $row[5] ?>" disabled selected hidden><?php echo $row[5] ?></option>
                 <?php
                     if(include('../../conectar.php'))
                     {
@@ -95,32 +113,11 @@ $apellidos = $_POST['apellidos'];
         <div class="row">
                 
                     <br>
-                <div class="col button"><button class="btn btn-primary" type="submit" name="boton" style="background-color: #212529; border:none;">Guardar</button></div>
+                <div class="col button"><button class="btn btn-primary" type="submit" name="boton" style="background-color: #212529; border:none;">Actualizar</button></div>
              
             </div>
-            <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <i class="fas fa-file-excel"></i>Importar desde excel
-            </a>
-
-            <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Elija el archivo excel</h5>
-        
-      </div>
-      <div class="modal-body">
-      <input type="file" id="txt_archivo" class="form-control">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button class="btn btn-success" onclick="cargarExcel()">Importar</button>
-      </div>
-    </div>
-  </div>
-</div>
+            
     </form>
-
-
-    
+</div>
+    </body>
+</html>

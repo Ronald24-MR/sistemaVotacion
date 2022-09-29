@@ -4,9 +4,9 @@
             <?php include("../../conectar.php"); ?>
             <?php  if (isset($_GET['eliminado'])){
     
-                print("<script>Swal.fire('registro eliminado')</script>");
+                print("<script>Swal.fire('Registro eliminado correctamente')</script>");
 
-  } ?>
+            } ?>
 
     
             
@@ -67,20 +67,8 @@
                                                 print("<td>No ha votado</td>");
                                             }
                                             print("<td>
-                                            <form method='post' action='actualizar.php'>
-                                                
+                                            <a href='actualizar.php?id=$fila[0]' class='btn btn-info'>Editar</a>
 
-                                                <input type='submit' name='accion' id='actualizar' value='Seleccionar' class='btn btn-primary'>
-                                                <input type='hidden' name='cedula' value='$fila[0]'>
-                                                <input type='hidden' name='nombres' value='$fila[2]'>
-                                                <input type='hidden' name='apellidos' value='$fila[3]'>
-                                                
-                                             
-                                
-                                                
-                                                
-
-                                            </form>
                                             <form method='post' action='borrar.php'>
                                             <input type='hidden' name='codigo' value='$fila[0]'>
                                             <input type='submit' name='accion'  value='Borrar' class='btn btn-danger' onclick='return Confirmar();'>

@@ -25,24 +25,33 @@ $reader->setReadFilter( new MyReadFilter() );
 $spredsheet = $reader->load($inputFileName);
 $cantidad = $spredsheet->getActiveSheet()->toArray();
 
-$table = "<table >";
+$table = "<table class='border='1'>";
 
 foreach($cantidad as $row){
     if($row[0] != ''){
+        $encriptar = password_hash($row[0], PASSWORD_DEFAULT,['cost' => 15]);
+        $sql = "INSERT INTO `usuario`(`usuario`, `clave`, `nombre_apellido`, `rol`, `estado`) VALUES ($row[0],'$encriptar','$row[2] $row[3]',2,0)";
+      
+        $conectar->query($sql);
         $consulta = "INSERT INTO gestionar_votantes (numero_documento, cod_tipo_documento, nombres, apellidos, cod_formacion, cod_sede) VALUES ('$row[0]','$row[1]','$row[2]','$row[3]','$row[4]','$row[5]')";
         if($result = $conectar->query($consulta)){
            $table =  $table.'<tr><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].'</td><td>'.$row[3].'</td><td>'.$row[4].'</td><td>'.$row[5].'</td><td>correcto</td></tr>';
         }
         else{
-            $table =  $table.'<tr><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].'</td><td>'.$row[3].'</td><td>'.$row[4].'</td><td>'.$row[5].'</td><td>correcto</td></tr>';
+            $table =  $table.'<tr><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].'</td><td>'.$row[3].'</td><td>'.$row[4].'</td><td>'.$row[5].'</td><td>incorrecto</td></tr>';
 
         }
 
         
     }
     
+  
 
 }
+
+
 $table = $table."</table>";
 print($table);
 ?>
+
+

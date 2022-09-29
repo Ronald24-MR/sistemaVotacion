@@ -52,7 +52,7 @@ create table sede(
 );
 create table usuario(
     usuario int primary key not null,
-    clave varchar(45) not null,
+    clave varchar(100) not null,
     nombre_apellido varchar(45) not null,
     rol int not null,
     estado int not null
