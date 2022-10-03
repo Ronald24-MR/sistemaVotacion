@@ -4,8 +4,8 @@
 
 $id=$_GET['id'];
 
-$sql="SELECT gestionar_votantes.numero_documento, tipo_documento.nombre, gestionar_votantes.nombres, gestionar_votantes.apellidos, formacion.nombre, sede.nombre FROM tipo_documento,sede,formacion,gestionar_votantes WHERE gestionar_votantes.cod_tipo_documento=tipo_documento.codigo and gestionar_votantes.cod_formacion=formacion.codigo and gestionar_votantes.cod_sede=sede.codigo";
-// print($sql);
+$sql="SELECT gestionar_votantes.numero_documento, tipo_documento.nombre, gestionar_votantes.nombres, gestionar_votantes.apellidos, formacion.nombre, sede.nombre FROM tipo_documento,sede,formacion,gestionar_votantes WHERE gestionar_votantes.cod_tipo_documento=tipo_documento.codigo and gestionar_votantes.cod_formacion=formacion.codigo and gestionar_votantes.cod_sede=sede.codigo and gestionar_votantes.numero_documento=$id";
+print($sql);
 $query=mysqli_query($conectar,$sql);
 
 $row=mysqli_fetch_array($query);
@@ -30,7 +30,7 @@ $row=mysqli_fetch_array($query);
         <div class="row">
             <div class="col">
             <select name="td" id="td" class="form-control" >
-                    <option value="<?php echo $row[1] ?>" disabled selected hidden><?php echo $row[1] ?></option>
+                   
                     <?php
                     if(include('../../conectar.php'))
                     {
@@ -38,9 +38,16 @@ $row=mysqli_fetch_array($query);
                         $tabla=mysqli_query($conectar,$sql);
                         while($fila=mysqli_fetch_array($tabla))
                         {
+                            if($fila[0]==$row[1]){
+                            print("<option selected value='$fila[0]'>");
+                            print($fila[1]);
+                            print("</option>");
+                            }
+                            else{
                             print("<option value='$fila[0]'>");
                             print($fila[1]);
                             print("</option>");
+                            }
                         }
                     }
                     else
@@ -67,7 +74,7 @@ $row=mysqli_fetch_array($query);
         <div class="row">
             <div class="col">
                 <select name="formacion" id="formacion" class="form-control" >
-                <option value="<?php echo $row[4] ?>" disabled selected hidden><?php echo $row[4] ?></option>
+                
                 <?php
                     if(include('../../conectar.php'))
                     {
@@ -75,9 +82,16 @@ $row=mysqli_fetch_array($query);
                         $tabla=mysqli_query($conectar,$sql);
                         while($fila=mysqli_fetch_array($tabla))
                         {
-                            print("<option value='$fila[0]'>");
-                            print($fila[1]);
-                            print("</option>");
+                            if($fila[0]==$row[4]){
+                                print("<option selected value='$fila[0]'>");
+                                print($fila[1]);
+                                print("</option>");
+                                }
+                                else{
+                                print("<option value='$fila[0]'>");
+                                print($fila[1]);
+                                print("</option>");
+                                }
                         }
                     }
                     else
@@ -89,7 +103,7 @@ $row=mysqli_fetch_array($query);
             </div>
             <div class="col">
                 <select name="sede" id="sede" class="form-control" >
-                <option value="<?php echo $row[5] ?>" disabled selected hidden><?php echo $row[5] ?></option>
+                
                 <?php
                     if(include('../../conectar.php'))
                     {
@@ -97,9 +111,16 @@ $row=mysqli_fetch_array($query);
                         $tabla=mysqli_query($conectar,$sql);
                         while($fila=mysqli_fetch_array($tabla))
                         {
-                            print("<option value='$fila[0]'>");
-                            print($fila[1]);
-                            print("</option>");
+                            if($fila[0]==$row[5]){
+                                print("<option selected value='$fila[0]'>");
+                                print($fila[1]);
+                                print("</option>");
+                                }
+                                else{
+                                print("<option value='$fila[0]'>");
+                                print($fila[1]);
+                                print("</option>");
+                                }
                         }
                     }
                     else

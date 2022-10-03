@@ -1,3 +1,18 @@
+<?php
+   session_start();
+   if(isset($_SESSION['usuario']))
+    {
+        // recuperando la session
+        $usuario=$_SESSION['usuario'];
+        // print("Bienvenido: ".$usuario[1]." ".$usuario[2]);
+    }
+    else
+    {   
+        // redireccionar para el login
+        session_destroy();
+        header("Location: ../index.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -146,9 +161,22 @@
         </div>
         
         
+        <script type="text/javascript">
+        function preventBack(){window.history.forward()};
+        setTimeout("preventBack()",0);
+        window.onunload = function(){null}
+        </script>
         
-        
-        
+        <script>
+        window.onload = function(){
+          window.location.hash = "no-back-button";
+          window.location.hash = "Again-No-back-button";
+
+          window.onhashchange=function(){
+            window.location.hash = "no-back-button";
+    }
+}
+    </script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

@@ -2,8 +2,19 @@
      
             <?php include("menu.php"); ?>
             <?php include("../../conectar.php"); ?>
-          
+            <?php  if (isset($_GET['eliminado'])){
+    
+                    print("<script>Swal.fire('Registro eliminado correctamente')</script>");
 
+            } ?>
+
+<?php 
+            if (isset($_GET['actualizado'])){
+    
+                print("<script>Swal.fire('Registro actualizado correctamente')</script>");
+
+            }
+            ?>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
@@ -53,13 +64,11 @@
                                             print("<td style='text-align:center;'>$fila[6]</td>");
                                             print("<td style='text-align:center;'>$fila[7]</td>");
                                             print("<td>
-                                            <form method=post'>
-                                                
+                                            <a href='actualizar2.php?id=$fila[2]' class='btn btn-info'>Editar</a>
 
-                                                <input type='submit' name='accion' id='actualizar' value='Seleccionar' class='btn btn-primary'>
-
-                                                <input type='submit' name='accion'  value='Borrar' class='btn btn-danger' onclick='Confirmar();'>
-
+                                            <form method='post' action='borrar2.php'>
+                                            <input type='hidden' name='codigo' value='$fila[2]'>
+                                            <input type='submit' name='accion'  value='Borrar' class='btn btn-danger' onclick='return Confirmar();'>
                                             </form>
                                             </td>");
                                             print("</tr>");
@@ -88,18 +97,19 @@
             </div>
         </div>
 
-        <!-- <script>
-            function Confirmar(){
-    var retVal = confirm("¿Seguro desea continuar?");
-    if( retVal == true ){
-        document.write ("OK, REGISTRO ALMACENADO");
-        return true;
-    }else{
-        document.write ("NO SE GUARDÓ EL REGISTRO");
-        return false;
-    }
-}
-        </script> -->
+        <script>
+           function Confirmar(){
+            let respuesta = confirm("Estas seguro que deseas borrar el registro?")
+
+            if(respuesta == true){
+                return true;
+            }
+            else{
+                return false;
+            }
+           }
+           
+        </script>
 
   
       

@@ -11,13 +11,14 @@ $formacion=$_POST['formacion'];
 $sede=$_POST['sede'];
 
 $sql="UPDATE `gestionar_votantes` SET `numero_documento`=$nd,`cod_tipo_documento`=$td,`nombres`='$nombres',`apellidos`='$apellidos',`cod_formacion`='$formacion',`cod_sede`='$sede' WHERE numero_documento = $nd";
+// print($sql);
 $query=mysqli_query($conectar,$sql);
 
-    if($query){
-        
-        Header("Location: reporteVotantes.php");
 
-            print("<script>swal('Registro actualizado correctamente') </script>");
         
-    }
+        Header("Location: reporteVotantes.php?actualizado=1");
+
+           
+        
+    
 ?>

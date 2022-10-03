@@ -8,6 +8,14 @@
 
             } ?>
 
+            <?php 
+            if (isset($_GET['actualizado'])){
+    
+                print("<script>Swal.fire('Registro actualizado correctamente')</script>");
+
+            }
+            ?>
+
     
             
 

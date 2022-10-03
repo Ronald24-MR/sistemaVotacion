@@ -44,9 +44,6 @@ foreach($cantidad as $row){
 
         
     }
-    
-  
-
 }
 
 
