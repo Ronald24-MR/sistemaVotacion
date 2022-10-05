@@ -5,7 +5,7 @@
 $id=$_GET['id'];
 
 $sql="SELECT gestionar_votantes.numero_documento, tipo_documento.nombre, gestionar_votantes.nombres, gestionar_votantes.apellidos, formacion.nombre, sede.nombre FROM tipo_documento,sede,formacion,gestionar_votantes WHERE gestionar_votantes.cod_tipo_documento=tipo_documento.codigo and gestionar_votantes.cod_formacion=formacion.codigo and gestionar_votantes.cod_sede=sede.codigo and gestionar_votantes.numero_documento=$id";
-print($sql);
+// print($sql);
 $query=mysqli_query($conectar,$sql);
 
 $row=mysqli_fetch_array($query);

@@ -12,12 +12,19 @@ include("../../conectar.php");
         $tipofile=$_FILES['fotografia']['type'];
         $pc=$_POST['pc'];
         $encriptar = password_hash($nd, PASSWORD_DEFAULT,['cost' => 15]);
+        if($nombrefoto=="")
+        {
+            $sql="UPDATE `registrar_votaciones` SET `numero_documento`=$nd,`cod_tipo_documento`=$td,`nombres`='$nombres',`apellidos`='$apellidos',`cod_formacion`='$formacion',`cod_sede`='$sede',`propuesta_campana`='$pc' WHERE numero_documento=$nd ";
+            $query=mysqli_query($conectar,$sql);
+            
+            $sql2="UPDATE `usuario` SET `nombre_apellido`='$nombres $apellidos' WHERE usuario=$nd";
+            mysqli_query($conectar,$sql2);
+            Header("Location: reporteCandidatos.php?actualizado=1");
+        }
+        else
+        {
         
-        $sql="UPDATE `registrar_votaciones` SET `numero_documento`=$nd,`cod_tipo_documento`=$td,`nombres`='$nombres',`apellidos`='$apellidos',`cod_formacion`='$formacion',`cod_sede`='$sede',`fotografia`='$nombrefoto',`propuesta_campana`='$pc' WHERE numero_documento=$nd ";
-    
-        $query=mysqli_query($conectar,$sql);
-
-
+        $sql="UPDATE `registrar_votaciones` SET `numero_documento`=$nd,`cod_tipo_documento`=$td,`fotografia`='$nombrefoto',`nombres`='$nombres',`apellidos`='$apellidos',`cod_formacion`='$formacion',`cod_sede`='$sede',`propuesta_campana`='$pc' WHERE numero_documento=$nd ";   
         if(!(strpos($tipofile,"jpg") || strpos($tipofile,"png") || strpos($tipofile,"jpeg")))
         {
             print("<script>Swal.fire('Tipo de archivo no valido')</script>");
@@ -30,8 +37,8 @@ include("../../conectar.php");
                 {
                     
                     $ruta="fotos/".$nombrefoto;
-                    $sql="insert into usuario value($nd,'$encriptar','$nombres $apellidos',2,0)";
-                    mysqli_query($conectar,$sql);
+                    $sql2="UPDATE `usuario` SET `nombre_apellido`='$nombres $apellidos' WHERE usuario=$nd";
+                    mysqli_query($conectar,$sql2);
                     if (move_uploaded_file($_FILES['fotografia']['tmp_name'],$ruta))
                     {
                         Header("Location: reporteCandidatos.php?actualizado=1");
@@ -46,11 +53,20 @@ include("../../conectar.php");
                     print("<script>Swal.fire('Error al guardar los datos')</script>");
                 }
             }
-        else
-        {
-            print("error al conectar");
+            else
+            {
+                print("error al conectar");
+            }
+            }
+        
         }
-        }
+
+       
+
+       
+
+      
+    
            
         
     
