@@ -72,7 +72,7 @@ form{
     font-size: 22px;
 }
 .propuestas:hover{
-    background-color: #FF6C00;
+    background-color: rgb(26,37,47);
     color: #fff;
 }
 /* triangulo */
@@ -91,7 +91,7 @@ form{
     .propuestas .textpro{
         visibility: hidden;
         width: 330px;
-        background-color: rgb(7, 175, 21);
+        background-color: rgb(26,37,47);
         color: #fff;
         text-align: center;
         border-radius: 6px;
@@ -107,7 +107,7 @@ form{
     .propuestas .textpro{
         visibility: hidden;
         width: 300px;
-        background-color: rgb(7, 175, 21);
+        background-color: rgb(26,37,47);
         color: #fff;
         text-align: center;
         border-radius: 6px;
@@ -149,7 +149,7 @@ form{
     .propuestas .textpro{
         visibility: hidden;
         width: 400px;
-        background-color: rgb(7, 175, 21);
+        background-color: rgb(26,37,47);
         color: #fff;
         text-align: center;
         border-radius: 6px;
@@ -168,7 +168,7 @@ form{
     .propuestas .textpro{
         visibility: hidden;
         width: 270px;
-        background-color: rgb(7, 175, 21);
+        background-color: rgb(26,37,47);
         color: #fff;
         text-align: center;
         border-radius: 6px;
@@ -192,7 +192,7 @@ form{
     .propuestas .textpro{
         visibility: hidden;
         width: 230px;
-        background-color: rgb(7, 175, 21);
+        background-color: rgb(26,37,47);
         color: #fff;
         text-align: center;
         border-radius: 6px;

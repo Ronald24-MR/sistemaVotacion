@@ -31,7 +31,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
    
-        <link rel="stylesheet" href="css/style2.css">
+        <link rel="stylesheet" href="css/style3.css">
     </head>
     <body id="page-top">
         <!-- Navigation-->

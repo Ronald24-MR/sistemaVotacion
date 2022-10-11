@@ -4,7 +4,7 @@
     $fecha=date('Y-m-d');
     $hora=date('h:i');
     $sql="SELECT * FROM agendar_votaciones WHERE '$fecha'>=fecha_inicio and '$fecha'<= fecha_final and '$hora' >= hora_inicio and '$hora' <= hora_final and estado=1";
-    print($sql);
+    // print($sql);
     if($conectar=mysqli_connect("localhost","root","","sistemavotaciones"))
         {
             $tabla=mysqli_query($conectar,$sql);
